@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Own | Engineering Career Intelligence Engine by Aneek Mallick</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#05070d',
+                        glassDark: 'rgba(10, 15, 30, 0.85)',
+                        neonCyan: '#00f3ff',
+                        neonBlue: '#0066ff',
+                        neonPurple: '#8b00ff',
+                        neonEmerald: '#00ff9d',
+                        goldAccent: '#ffb703'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                        bebas: ['Bebas Neue', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #05070d;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(10, 15, 30, 0.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 243, 255, 0.15);
+        }
+
+        .glass-panel-hover:hover {
+            border-color: rgba(0, 243, 255, 0.4);
+            box-shadow: 0 0 35px rgba(0, 243, 255, 0.2);
+        }
+
+        canvas#bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .gradient-btn {
+            background: linear-gradient(135deg, #00f3ff 0%, #0066ff 100%);
+            transition: all 0.3s ease;
+        }
+
+        .gradient-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.6);
+        }
+
+        .chip-checkbox:checked + label {
+            background: rgba(0, 243, 255, 0.18);
+            border-color: #00f3ff;
+            color: #00f3ff;
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.35);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #05070d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f3ff;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Interactive Mesh Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-cyan-500/20 px-4 lg:px-8 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Brand Logo & Founder Badge -->
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 p-[2px] shadow-lg shadow-cyan-500/20 shrink-0">
+                    <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center p-2">
+                        <svg viewBox="0 0 100 100" class="w-full h-full text-cyan-400 fill-current">
+                            <circle cx="50" cy="50" r="42" stroke="currentColor" stroke-width="4" fill="none" opacity="0.3"/>
+                            <path d="M 20 65 L 35 40 L 50 55 L 70 25 L 82 37" stroke="#00f3ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            <polygon points="70,20 85,22 80,37" fill="#00f3ff"/>
+                            <circle cx="20" cy="65" r="4" fill="#00ff9d"/>
+                            <circle cx="35" cy="40" r="4" fill="#00f3ff"/>
+                            <circle cx="50" cy="55" r="4" fill="#00f3ff"/>
+                            <circle cx="70" cy="25" r="4" fill="#00ff9d"/>
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="font-display font-black text-2xl tracking-wider text-white flex items-center gap-2">
+                        CHOOSE YOUR <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan via-blue-400 to-purple-500">OWN</span>
+                    </h1>
+                    <p class="text-[11px] text-slate-400 font-mono tracking-tight flex items-center gap-2">
+                        <span>ENGINEERING CAREER INTELLIGENCE ENGINE</span>
+                        <span class="text-cyan-400 font-semibold">• Founder: Aneek Mallick </span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Social Media Buttons & Database Explorer -->
+            <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-mono">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-300">
+                    <a href="https://www.instagram.com/_aneek_18_?cplk=b3d1ZHZwNXJva3kw" target="_blank" rel="noopener" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-pink-600/30 text-pink-400 flex items-center justify-center transition border border-slate-700 hover:border-pink-500" title="Instagram">
+                        <i class="fa-brands fa-instagram text-sm"></i>
+                    </a>
+                    <a href="https://www.facebook.com/share/1CcF2JAN2H/" target="_blank" rel="noopener" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-blue-600/30 text-blue-400 flex items-center justify-center transition border border-slate-700 hover:border-blue-500" title="Facebook">
+                        <i class="fa-brands fa-facebook-f text-sm"></i>
+                    </a>
+ <a href="https://x.com/_andres_aneek_" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-xl bg-cyan-950/60 hover:bg-cyan-900/80 text-cyan-300 border border-cyan-500/40 text-xs font-mono flex items-center gap-2 transition">
+    <svg class="h-3.5 w-3.5 fill-current text-cyan-300" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+</a>
+                    <a href="https://www.linkedin.com/in/aneek-mallick-32740a36a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-blue-500/30 text-blue-300 flex items-center justify-center transition border border-slate-700 hover:border-blue-400" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in text-sm"></i>
+                    </a>
+                </div>
+
+                <button onclick="openDbModal()" class="px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-cyan-300 border border-cyan-500/30 transition flex items-center gap-2 font-semibold">
+                    <i class="fa-solid fa-database"></i> Database Explorer
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 lg:px-8 py-8 flex-grow w-full space-y-12">
+        
+        <!-- Hero Section -->
+        <section class="text-center space-y-4 max-w-4xl mx-auto pt-4">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 text-xs font-mono">
+                <i class="fa-solid fa-microchip"></i> Architectural Guidance Engine Exclusively for B.Tech CSE & IT Stream Students
+            </div>
+            <h2 class="font-display font-black text-3xl md:text-5xl lg:text-6xl text-white tracking-tight leading-tight">
+                Data Science, ML & AI <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan via-blue-400 to-neonPurple">Choose Your Own Engineering Track.</span>
+            </h2>
+            <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-3xl mx-auto">
+               Discover where you fit in the tech ecosystem. Input your stream, tech stack, and skills to get an industry-tested roadmap tailored for B.Tech engineers.
+            </p>
+            <div class="pt-2">
+                <blockquote class="inline-block px-6 py-3 rounded-2xl bg-slate-900/90 border border-cyan-500/20 text-cyan-300 font-mono text-xs md:text-sm italic shadow-lg">
+                    <i class="fa-solid fa-quote-left mr-2 text-cyan-500 opacity-60"></i>
+                    "Algorithms don't dream. We build what comes next."
+                    <i class="fa-solid fa-quote-right ml-2 text-cyan-500 opacity-60"></i>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Founder Profile Card -->
+        <section class="glass-panel rounded-3xl p-6 md:p-8 border border-cyan-500/30 relative overflow-hidden">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center space-x-5">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-purple-600 p-[2px] shadow-xl shrink-0">
+                        <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center p-2">
+                            <svg viewBox="0 0 100 100" class="w-full h-full text-cyan-400 fill-current">
+                                <circle cx="50" cy="50" r="42" stroke="currentColor" stroke-width="4" fill="none" opacity="0.3"/>
+                                <path d="M 20 65 L 35 40 L 50 55 L 70 25 L 82 37" stroke="#00f3ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/80 p-6 backdrop-blur-sm transition-all hover:border-cyan-500/30 shadow-xl">
+                        <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-500 to-blue-600"></div>
+                        <div class="flex flex-col gap-1.5">
+                            <span class="inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-cyan-400">
+                                <span class="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                                Platform Founder & Architect
+                            </span>
+                            <h3 class="font-display text-2xl font-black text-white tracking-tight flex flex-wrap items-baseline gap-x-2">
+                                Aneek Mallick
+                                <span class="text-xs font-normal text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded-md border border-slate-700/50">
+                                    Alias Name: Andres
+                                </span>
+                            </h3>
+                            <p class="mt-1 text-sm font-medium leading-relaxed text-slate-300">
+                                Computer Science Engineer & Lead Architect of <span class="text-cyan-200">Choose Your Own Intelligence Engine</span>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Founder Social Links Bar -->
+                <div class="flex items-center gap-3 bg-slate-900/90 px-5 py-3 rounded-2xl border border-slate-800">
+                    <span class="text-xs font-mono text-slate-400 font-semibold mr-1">Social Media Handles:</span>
+                    <a href="https://www.instagram.com/_aneek_18_?cplk=b3d1ZHZwNXJva3kw" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-xl bg-pink-950/60 hover:bg-pink-900/80 text-pink-300 border border-pink-500/40 text-xs font-mono flex items-center gap-2 transition">
+                        <i class="fa-brands fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://www.facebook.com/share/1CcF2JAN2H/" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-xl bg-blue-950/60 hover:bg-blue-900/80 text-blue-300 border border-blue-500/40 text-xs font-mono flex items-center gap-2 transition">
+                        <i class="fa-brands fa-facebook"></i> Facebook
+                    </a>
+                    <a href="https://x.com/_andres_aneek_" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-xl bg-cyan-950/60 hover:bg-cyan-900/80 text-cyan-300 border border-cyan-500/40 text-xs font-mono flex items-center gap-2 transition">
+                        <i class="fa-brands fa-x-twitter"></i> X
+                    </a>
+                    <a href="https://www.linkedin.com/in/aneek-mallick-32740a36a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-xl bg-blue-950/60 hover:bg-blue-900/80 text-blue-200 border border-blue-400/40 text-xs font-mono flex items-center gap-2 transition">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Input Matrix -->
+        <section class="glass-panel rounded-3xl p-6 md:p-8 space-y-8 shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-32 -right-32 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Step 1: Branch & Year -->
+            <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+                <div class="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">1</div>
+                <h3 class="font-display font-bold text-lg text-white">B.Tech Specialization Stream & Year</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">B.Tech Stream</label>
+                    <select id="stream-select" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neonCyan transition">
+                        <option value="CSE">B.Tech Computer Science & Engineering (Core CSE)</option>
+                        <option value="IT">B.Tech Information Technology (IT)</option>
+                        <option value="AIDS">B.Tech Artificial Intelligence & Data Science (AI & DS)</option>
+                        <option value="AIML">B.Tech Artificial Intelligence & Machine Learning (AI & ML)</option>
+                        <option value="CYBER">B.Tech Cyber Security (CS)</option>
+                        <option value="CLOUD">B.Tech Cloud Computing & Virtualization</option>
+                        <option value="SE">B.Tech Software Engineering (SE)</option>
+                        <option value="BIGDATA">B.Tech Data Analytics & Big Data</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">Current Academic Year</label>
+                    <select id="year-select" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neonCyan transition">
+                        <option value="1">1st Year (Foundational)</option>
+                        <option value="2">2nd Year (Core Programming & DSA)</option>
+                        <option value="3" selected>3rd Year (Specialization & Mini Projects)</option>
+                        <option value="4">4th Year (Capstones & Placements)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Step 2: Categorized Tech Stack Selection -->
+            <div class="flex items-center gap-3 border-b border-slate-800 pb-4 pt-4">
+                <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">2</div>
+                <h3 class="font-display font-bold text-lg text-white">Technical Skills & Ecosystem Stack Selection</h3>
+            </div>
+
+            <!-- Category A: Programming Languages -->
+            <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-code text-cyan-400"></i> A. Programming Languages (<span id="count-langs">0</span> selected)
+                    </span>
+                    <button type="button" onclick="clearCategory('lang')" class="text-xs text-cyan-400 hover:underline">Clear Languages</button>
+                </div>
+                <div class="flex flex-wrap gap-2.5" id="langs-container"></div>
+            </div>
+
+            <!-- Category B: Web & UI Technologies -->
+            <div class="space-y-3 pt-2">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-laptop-code text-purple-400"></i> B. Web & Frontend Stack (<span id="count-web">0</span> selected)
+                    </span>
+                    <button type="button" onclick="clearCategory('web')" class="text-xs text-cyan-400 hover:underline">Clear Web Stack</button>
+                </div>
+                <div class="flex flex-wrap gap-2.5" id="web-container"></div>
+            </div>
+
+            <!-- Category C: Python AI & ML Libraries -->
+            <div class="space-y-3 pt-2">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-brain text-emerald-400"></i> C. Python Data Science, ML & AI Libraries (<span id="count-py-ai">0</span> selected)
+                    </span>
+                    <button type="button" onclick="clearCategory('py_ai')" class="text-xs text-cyan-400 hover:underline">Clear Python AI Stack</button>
+                </div>
+                <div class="flex flex-wrap gap-2.5" id="py-ai-container"></div>
+            </div>
+
+            <!-- Category D: Java Ecosystem Libraries & Frameworks -->
+            <div class="space-y-3 pt-2">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold flex items-center gap-2">
+                        <i class="fa-brands fa-java text-orange-400"></i> D. Java Ecosystem Libraries & Frameworks (<span id="count-java">0</span> selected)
+                    </span>
+                    <button type="button" onclick="clearCategory('java_eco')" class="text-xs text-cyan-400 hover:underline">Clear Java Stack</button>
+                </div>
+                <div class="flex flex-wrap gap-2.5" id="java-container"></div>
+            </div>
+
+            <!-- Category E: Databases & Storage (SQL & NoSQL) -->
+            <div class="space-y-3 pt-2">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-database text-goldAccent"></i> E. Databases & Storage (SQL & NoSQL) (<span id="count-db">0</span> selected)
+                    </span>
+                    <button type="button" onclick="clearCategory('db')" class="text-xs text-cyan-400 hover:underline">Clear Databases</button>
+                </div>
+                <div class="flex flex-wrap gap-2.5" id="db-container"></div>
+            </div>
+
+            <!-- Submit Action Trigger -->
+            <div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 border-t border-slate-800">
+                <div class="text-xs text-slate-400 flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-cyan-400 text-base"></i>
+                    <span>Categorized Matrix active. Choose Your Own engine maps your precise skills to CSE roles.</span>
+                </div>
+                <button onclick="analyzeCareer()" class="w-full md:w-auto px-10 py-4 rounded-xl gradient-btn text-slate-950 font-display font-extrabold text-sm tracking-widest uppercase flex items-center justify-center gap-3 shadow-xl">
+                    <i class="fa-solid fa-bolt text-lg"></i> Run Career Match Engine
+                </button>
+            </div>
+        </section>
+
+        <!-- Dynamic Results Dashboard -->
+        <section id="results-section" class="hidden space-y-8">
+            
+            <!-- Primary Match Banner -->
+            <div class="glass-panel rounded-3xl p-6 md:p-8 border border-cyan-500/40 relative overflow-hidden">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+                    <div class="space-y-3 max-w-3xl">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-mono">
+                            <i class="fa-solid fa-bullseye"></i> Primary Target Career Match Identified
+                        </div>
+                        <h2 class="font-display font-black text-3xl md:text-5xl text-white tracking-tight" id="res-target-role">
+                            Artificial Intelligence & GenAI Engineer
+                        </h2>
+                        <p class="text-slate-300 text-sm md:text-base leading-relaxed" id="res-target-desc">
+                            Your configuration aligns with Deep Learning, LLM Agentic Architectures, PyTorch, and Transformers.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-6 bg-slate-900/90 p-5 rounded-2xl border border-slate-800 w-full lg:w-auto justify-around lg:justify-end shadow-inner">
+                        <div class="text-center">
+                            <span class="text-[10px] font-mono text-slate-400 block tracking-wider">FIT SCORE</span>
+                            <span class="font-display font-black text-4xl text-transparent bg-clip-text bg-gradient-to-r from-neonCyan to-emerald-400" id="res-match-score">96%</span>
+                        </div>
+                        <div class="h-10 w-px bg-slate-800"></div>
+                        <div class="text-center">
+                            <span class="text-[10px] font-mono text-slate-400 block tracking-wider">ESTIMATED ENTRY SALARY</span>
+                            <span class="font-display font-extrabold text-xl text-white" id="res-avg-salary">₹10 - 24 LPA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VISUAL ROADMAP CANVAS SECTION -->
+            <div class="glass-panel rounded-3xl p-6 md:p-8 space-y-6 border border-cyan-500/30">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800 pb-4">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 text-xs font-mono mb-2">
+                            <i class="fa-solid fa-route"></i> Personalized Architectural Visual Roadmap
+                        </div>
+                        <h3 class="font-display font-bold text-2xl text-white">Visual Step-by-Step Learning Flowchart</h3>
+                        <p class="text-xs text-slate-400">Generated automatically based on your skills matrix with official watermark</p>
+                    </div>
+                    <button onclick="downloadRoadmapCanvas()" class="px-5 py-2.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-mono font-bold flex items-center gap-2 transition">
+                        <i class="fa-solid fa-download"></i> Download Roadmap PNG
+                    </button>
+                </div>
+
+                <!-- Canvas Wrapper -->
+                <div class="w-full overflow-x-auto bg-slate-950/80 rounded-2xl p-4 border border-slate-800">
+                    <canvas id="roadmap-canvas" width="1000" height="340" class="max-w-full h-auto mx-auto block"></canvas>
+                </div>
+            </div>
+
+            <!-- STREAM & FUTURE TRAJECTORY ANALYSIS -->
+            <div class="glass-panel rounded-3xl p-6 md:p-8 space-y-6 border border-purple-500/30">
+                <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+                    <div class="w-9 h-9 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-compass text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-xl text-white">Stream & Future Best-Fit Trajectory Analysis</h3>
+                        <p class="text-xs text-slate-400">Where this specialization positions you over the next 5-10 years</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 space-y-2">
+                        <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-wider block">Optimal B.Tech Stream Alignment</span>
+                        <h4 class="font-display font-bold text-white text-base" id="traj-stream-fit">B.Tech AI & Data Science (AI & DS)</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed" id="traj-stream-desc">Your choice of high-level statistics and Python libraries makes AI & DS your best academic stream match.</p>
+                    </div>
+
+                    <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 space-y-2">
+                        <span class="text-[10px] font-mono text-purple-400 uppercase tracking-wider block">5-10 Year Market Horizon</span>
+                        <h4 class="font-display font-bold text-white text-base" id="traj-horizon">High Expansion / Critical Demand</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed" id="traj-horizon-desc">Automated reasoning, LLM optimization, and autonomous software agents represent the fastest-growing sector.</p>
+                    </div>
+
+                    <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 space-y-2">
+                        <span class="text-[10px] font-mono text-emerald-400 uppercase tracking-wider block">Key Future Milestone</span>
+                        <h4 class="font-display font-bold text-white text-base" id="traj-milestone">System Architecture Leadership</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed" id="traj-milestone-desc">Transitioning from individual contributor code pipelines to Principal System & Model Architect.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Electives & Projects Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- B.Tech Electives & Tech Stack -->
+                <div class="glass-panel rounded-3xl p-6 space-y-6">
+                    <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
+                        <i class="fa-solid fa-book-bookmark text-neonCyan text-xl"></i>
+                        <h3 class="font-display font-bold text-lg text-white">Recommended B.Tech Elective Subjects</h3>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-300" id="res-electives-list"></ul>
+
+                    <div class="flex items-center gap-3 border-b border-slate-800 pb-3 pt-4">
+                        <i class="fa-solid fa-layer-group text-neonPurple text-xl"></i>
+                        <h3 class="font-display font-bold text-lg text-white">Matched Technical Tools & Stack</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2" id="res-skills-to-learn"></div>
+                </div>
+
+                <!-- Capstone Project Architectures -->
+                <div class="glass-panel rounded-3xl p-6 space-y-6">
+                    <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
+                        <i class="fa-solid fa-diagram-project text-emerald-400 text-xl"></i>
+                        <h3 class="font-display font-bold text-lg text-white">Industry-Grade Capstone Projects</h3>
+                    </div>
+                    <div class="space-y-4" id="res-projects-list"></div>
+                </div>
+            </div>
+
+            <!-- DO'S and DON'TS Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-panel rounded-3xl p-6 border-l-4 border-l-emerald-400 space-y-4 bg-gradient-to-r from-emerald-950/20 to-transparent">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-emerald-400">WHAT TO DO (Strategic Advice)</h3>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-300" id="res-dos-list"></ul>
+                </div>
+
+                <div class="glass-panel rounded-3xl p-6 border-l-4 border-l-rose-500 space-y-4 bg-gradient-to-r from-rose-950/20 to-transparent">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-lg text-rose-400">WHAT NOT TO DO (Common Mistakes)</h3>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-300" id="res-donts-list"></ul>
+                </div>
+            </div>
+
+            <!-- Export Toolbar -->
+            <div class="glass-panel rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div>
+                    <h4 class="font-display font-bold text-white text-sm">Download Career Plan</h4>
+                    <p class="text-xs text-slate-400">Export your primary career analysis and roadmap details for offline reference</p>
+                </div>
+                
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <button onclick="exportCareerPlan('txt')" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-file-arrow-down"></i> Download Roadmap (.TXT)
+                    </button>
+                    <button onclick="exportCareerPlan('json')" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-cyan-400 border border-cyan-500/30 text-xs font-semibold flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-code"></i> Download JSON Data
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 1ST FORM: ENGINEERING PROBLEM & GUIDANCE SUBMISSION PORTAL (Web3Forms Key: 25716a97-1863-445a-a7d1-3c2ad20523ca) -->
+        <section class="glass-panel rounded-3xl p-6 md:p-10 space-y-6 relative overflow-hidden border border-cyan-500/30">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 border-b border-slate-800 pb-6">
+                <div class="space-y-2">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 text-xs font-mono">
+                        <i class="fa-solid fa-headset"></i> Engineering Problem & Guidance Submission Portal
+                    </div>
+                    <h3 class="font-display font-extrabold text-2xl md:text-3xl text-white">
+                        Submit Your Academic, Skill, or Projects
+                    </h3>
+                    <p class="text-xs md:text-sm text-slate-300">
+                        Facing blockers in language choices, stream selection, or capstone architecture? Submit your engineering problem for tailored guidance.
+                    </p>
+                </div>
+                <div class="w-14 h-14 rounded-2xl bg-slate-900 border border-cyan-500/30 flex items-center justify-center shrink-0 text-cyan-400 text-2xl">
+                    <i class="fa-solid fa-clipboard-question"></i>
+                </div>
+            </div>
+
+            <form id="problem-form" onsubmit="handleProblemSubmit(event)" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-xs font-mono uppercase text-slate-400 mb-2">Student Name</label>
+                    <input type="text" required id="prob-name" name="name" placeholder="e.g. Ananya Sen" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-neonCyan">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono uppercase text-slate-400 mb-2">Email Address</label>
+                    <input type="email" required id="prob-email" name="email" placeholder="ananya@college.edu" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-neonCyan">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono uppercase text-slate-400 mb-2">Primary Engineering Problem Category</label>
+                    <select id="prob-category" name="category" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-neonCyan">
+                        <option value="Career Path Confusion (AI vs ML vs Data Science)">Career Path Confusion (AI vs ML vs Data Science)</option>
+                        <option value="Skill Gap & Stack Selection Blockers">Skill Gap & Stack Selection Blockers</option>
+                        <option value="Capstone Project Architectural Failure">Capstone Project Architectural Failure</option>
+                        <option value="Placement Drive Technical Prep Strategy">Placement Drive Technical Prep Strategy</option>
+                        <option value="Academic Backlogs & Stream Realignment">Academic Backlogs & Stream Realignment</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-mono uppercase text-slate-400 mb-2">Current Academic Year & Stream</label>
+                    <input type="text" required id="prob-stream" name="stream_year" placeholder="e.g. 3rd Year B.Tech CSE" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-neonCyan">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-mono uppercase text-slate-400 mb-2">Detailed Problem Description & Tech Stack Context</label>
+                    <textarea id="prob-desc" name="message" rows="4" required placeholder="Detail the exact problem, error, or strategic confusion you are facing..." class="w-full bg-slate-900/90 border border-slate-700 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-neonCyan"></textarea>
+                </div>
+                <div class="md:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                    <span class="text-xs text-slate-400 flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-emerald-400"></i> Web3Forms Database Key: 25716a97-1863-445a-a7d1-3c2ad20523ca
+                    </span>
+                    <button type="submit" id="prob-btn" class="w-full sm:w-auto px-8 py-3.5 rounded-xl gradient-btn text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> Submit Problem Ticket
+                    </button>
+                </div>
+            </form>
+
+            <div id="prob-success-message" class="hidden p-6 rounded-2xl bg-emerald-950/60 border border-emerald-500/50 text-emerald-300 text-sm space-y-2">
+                <div class="flex items-center gap-3 font-bold text-base">
+                    <i class="fa-solid fa-circle-check text-xl"></i> Engineering Problem Ticket Submitted via Web3Forms!
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Ticket ID <span id="conf-ticket-id" class="font-mono text-cyan-400 font-bold"></span> has been transmitted for <span id="conf-prob-name" class="font-bold text-white"></span>. Response will be dispatched to <span id="conf-prob-email" class="font-bold text-white"></span>.
+                </p>
+            </div>
+        </section>
+
+        <!-- 2ND FORM: WEBSITE & EXPERIENCE FEEDBACK FORM (Web3Forms Key: 04e96e40-15eb-40f8-a375-82a6684b2668) -->
+        <section class="glass-panel rounded-3xl p-6 md:p-10 space-y-6 relative overflow-hidden border border-goldAccent/30">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 border-b border-slate-800 pb-6">
+                <div class="space-y-2">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950/80 text-amber-300 text-xs font-mono border border-amber-500/30">
+                        <i class="fa-solid fa-star text-goldAccent"></i> Student Experience Feedback & Rating
+                    </div>
+                    <h3 class="font-display font-extrabold text-2xl md:text-3xl text-white">
+                        Rate Your Experience on Choose Your Own
+                    </h3>
+                    <p class="text-xs md:text-sm text-slate-300">
+                        Your rating helps improve our career decision algorithms. Submit a 1-5 star rating to log your evaluation to our feedback database.
+                    </p>
+                </div>
+                <div class="w-14 h-14 rounded-2xl bg-slate-900 border border-goldAccent/30 flex items-center justify-center shrink-0 text-goldAccent text-2xl">
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+            </div>
+
+            <form id="rating-form" onsubmit="handleRatingSubmit(event)" class="space-y-6">
+                <div class="flex flex-col items-center justify-center py-4 bg-slate-950/60 rounded-2xl border border-slate-800 space-y-3">
+                    <span class="text-xs font-mono uppercase tracking-widest text-slate-400">Select Your Overall Rating (1 to 5 Stars)</span>
+                    <div class="flex items-center gap-2 text-3xl text-slate-600" id="star-rating-container">
+                        <i class="fa-solid fa-star cursor-pointer hover:text-goldAccent transition-colors" data-rating="1" onclick="setRating(1)" onmouseenter="hoverRating(1)" onmouseleave="resetHoverRating()"></i>
+                        <i class="fa-solid fa-star cursor-pointer hover:text-goldAccent transition-colors" data-rating="2" onclick="setRating(2)" onmouseenter="hoverRating(2)" onmouseleave="resetHoverRating()"></i>
+                        <i class="fa-solid fa-star cursor-pointer hover:text-goldAccent transition-colors" data-rating="3" onclick="setRating(3)" onmouseenter="hoverRating(3)" onmouseleave="resetHoverRating()"></i>
+                        <i class="fa-solid fa-star cursor-pointer hover:text-goldAccent transition-colors" data-rating="4" onclick="setRating(4)" onmouseenter="hoverRating(4)" onmouseleave="resetHoverRating()"></i>
+                        <i class="fa-solid fa-star cursor-pointer hover:text-goldAccent transition-colors" data-rating="5" onclick="setRating(5)" onmouseenter="hoverRating(5)" onmouseleave="resetHoverRating()"></i>
+                    </div>
+                    <span class="text-xs font-mono text-cyan-400 font-bold" id="rating-label-text">Tap a star to rate</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-slate-400 mb-2">Student Name</label>
+                        <input type="text" id="fb-name" name="name" required placeholder="e.g. Rahul Sharma" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-goldAccent">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-slate-400 mb-2">College / Academic Institution</label>
+                        <input type="text" id="fb-college" name="college" required placeholder="e.g. SRM Institute of Science and Tech" class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-goldAccent">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-mono uppercase text-slate-400 mb-2">Detailed Feedback / Suggestions</label>
+                        <textarea id="fb-comment" name="feedback" rows="3" required placeholder="Tell us how helpful the target role matching, electives, and roadmap were..." class="w-full bg-slate-900/90 border border-slate-700 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-goldAccent"></textarea>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                    <span class="text-xs text-slate-400 flex items-center gap-2">
+                        <i class="fa-solid fa-database text-goldAccent"></i> Web3Forms Database Key: 04e96e40-15eb-40f8-a375-82a6684b2668
+                    </span>
+                    <button type="submit" id="rating-btn" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-goldAccent to-amber-600 text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg hover:shadow-amber-500/20 transition">
+                        <i class="fa-solid fa-paper-plane"></i> Submit Rating & Feedback
+                    </button>
+                </div>
+            </form>
+
+            <div id="rating-success-message" class="hidden p-6 rounded-2xl bg-amber-950/60 border border-amber-500/50 text-amber-200 text-sm space-y-2">
+                <div class="flex items-center gap-3 font-bold text-base">
+                    <i class="fa-solid fa-circle-check text-xl text-goldAccent"></i> Feedback Recorded via Web3Forms!
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    Thank you <span id="conf-fb-name" class="font-bold text-white"></span>! Your <span id="conf-fb-rating" class="font-bold text-goldAccent">5-Star</span> rating and feedback have been successfully saved into our feedback database.
+                </p>
+            </div>
+
+            <!-- 24 Hour Rating Lockout Notice -->
+            <div id="rating-lockout-message" class="hidden p-6 rounded-2xl bg-slate-900/90 border border-amber-500/40 text-amber-300 text-sm space-y-2">
+                <div class="flex items-center gap-3 font-bold text-base text-goldAccent">
+                    <i class="fa-solid fa-clock"></i> Feedback Lockout Active (24-Hour Rate Limit)
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                    You have already submitted a rating within the last 24 hours. Please return after 24 hours to submit new feedback.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+                <p class="text-sm">© Aneek Mallick (Andres) • Choose Your Own</p>
+            </div>
+            <div class="flex items-center space-x-4 text-lg">
+                <a href="https://www.instagram.com/_aneek_18_" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile" class="text-slate-400 hover:text-pink-400 transition-colors duration-200">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/share/1CcF2JAN2H/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Profile" class="text-slate-400 hover:text-blue-500 transition-colors duration-200">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://x.com/_andres_aneek_" target="_blank" rel="noopener noreferrer" aria-label="X Profile" class="inline-flex items-center text-slate-400 hover:text-cyan-400 transition-colors duration-200">
+                    <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/aneek-mallick-32740a36a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="text-slate-400 hover:text-blue-400 transition-colors duration-200">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <span class="text-slate-600 select-none">•</span>
+                <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-xs font-semibold tracking-wide uppercase text-slate-400 hover:text-cyan-400 transition-colors duration-200 cursor-pointer bg-transparent border-0 p-0 focus:outline-none">
+                    Back to Top
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL: Database Explorer -->
+    <div id="db-modal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-panel w-full max-w-5xl max-h-[85vh] rounded-3xl border border-cyan-500/40 flex flex-col overflow-hidden shadow-2xl">
+            <div class="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-900/80">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-table-list text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-white text-lg">Choose Your Own Career Database Matrix</h3>
+                        <p class="text-xs text-slate-400">Explore CS tracks (Data Science, ML, AI/GenAI, Cyber, Cloud, Systems, Web3)</p>
+                    </div>
+                </div>
+                <button onclick="closeDbModal()" class="text-slate-400 hover:text-white p-2 text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-4 border-b border-slate-800 bg-slate-900/40 flex flex-col sm:flex-row gap-3">
+                <div class="relative flex-grow">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-3.5 text-slate-500 text-xs"></i>
+                    <input type="text" id="modal-search" oninput="renderModalDb()" placeholder="Search role, Pandas, PyTorch, Spring Boot, PostgreSQL..." class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-4 py-2 text-sm text-white focus:outline-none focus:border-cyan-400">
+                </div>
+                <select id="modal-filter-domain" onchange="renderModalDb()" class="bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-cyan-400">
+                    <option value="ALL">All Tech Verticals</option>
+                    <option value="AI">AI & GenAI</option>
+                    <option value="ML">Machine Learning</option>
+                    <option value="DATA">Data Science</option>
+                    <option value="CYBER">Cybersecurity</option>
+                    <option value="WEB">Web & Distributed</option>
+                    <option value="WEB3">Web3 & Blockchain</option>
+                </select>
+            </div>
+
+            <div class="p-6 overflow-y-auto space-y-6 flex-grow" id="modal-db-container"></div>
+
+            <div class="p-4 border-t border-slate-800 bg-slate-900/80 flex justify-between items-center text-xs text-slate-400 font-mono">
+                <span id="modal-item-count">9 Domains Available</span>
+                <button onclick="closeDbModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold">Close Explorer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Engine Logic -->
+    <script>
+        // Web3Forms API Base Endpoint
+        const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+        const PROBLEM_FORM_ACCESS_KEY = "25716a97-1863-445a-a7d1-3c2ad20523ca";
+        const FEEDBACK_FORM_ACCESS_KEY = "04e96e40-15eb-40f8-a375-82a6684b2668";
+
+        // Categorized Skills Datasets
+        const langList = [
+            { id: 'python', label: 'Python', icon: 'fa-brands fa-python' },
+            { id: 'cpp', label: 'C / C++', icon: 'fa-solid fa-code' },
+            { id: 'java', label: 'Java', icon: 'fa-brands fa-java' },
+            { id: 'js', label: 'JavaScript', icon: 'fa-brands fa-js' },
+            { id: 'ts', label: 'TypeScript', icon: 'fa-solid fa-code' },
+            { id: 'go', label: 'Golang', icon: 'fa-solid fa-g' },
+            { id: 'rust', label: 'Rust', icon: 'fa-solid fa-gear' },
+            { id: 'sql', label: 'SQL', icon: 'fa-solid fa-database' },
+            { id: 'r', label: 'R Language', icon: 'fa-solid fa-chart-line' },
+            { id: 'julia', label: 'Julia', icon: 'fa-solid fa-bolt' },
+            { id: 'kotlin', label: 'Kotlin', icon: 'fa-brands fa-android' },
+            { id: 'swift', label: 'Swift', icon: 'fa-brands fa-apple' },
+            { id: 'dart', label: 'Dart', icon: 'fa-solid fa-mobile-screen' },
+            { id: 'csharp', label: 'C#', icon: 'fa-solid fa-code' },
+            { id: 'bash', label: 'Bash / Shell', icon: 'fa-solid fa-terminal' },
+            { id: 'matlab', label: 'MATLAB', icon: 'fa-solid fa-calculator' },
+            { id: 'asm', label: 'Assembly (x86/ARM)', icon: 'fa-solid fa-microchip' },
+            { id: 'solidity', label: 'Solidity', icon: 'fa-brands fa-ethereum' },
+            { id: 'haskell', label: 'Haskell', icon: 'fa-solid fa-square-root-variable' },
+            { id: 'scala', label: 'Scala', icon: 'fa-solid fa-layer-group' },
+            { id: 'elixir', label: 'Elixir', icon: 'fa-solid fa-droplet' },
+            { id: 'erlang', label: 'Erlang', icon: 'fa-solid fa-network-wired' },
+            { id: 'lua', label: 'Lua', icon: 'fa-solid fa-moon' },
+            { id: 'groovy', label: 'Groovy', icon: 'fa-solid fa-feather' },
+            { id: 'perl', label: 'Perl', icon: 'fa-solid fa-camel' },
+            { id: 'fsharp', label: 'F#', icon: 'fa-solid fa-code' }
+        ];
+
+        const webList = [
+            { id: 'html5', label: 'HTML5' },
+            { id: 'css3', label: 'CSS3' },
+            { id: 'tailwind', label: 'Tailwind CSS' },
+            { id: 'sass', label: 'SASS / SCSS' },
+            { id: 'react', label: 'React.js' },
+            { id: 'vue', label: 'Vue.js' },
+            { id: 'angular', label: 'Angular' },
+            { id: 'nextjs', label: 'Next.js' },
+            { id: 'threejs', label: 'WebGL / Three.js' }
+        ];
+
+        const pyAiList = [
+            { id: 'pandas', label: 'Pandas' },
+            { id: 'numpy', label: 'NumPy' },
+            { id: 'scikit', label: 'Scikit-Learn' },
+            { id: 'tensorflow', label: 'TensorFlow' },
+            { id: 'pytorch', label: 'PyTorch' },
+            { id: 'scipy', label: 'SciPy' },
+            { id: 'matplotlib', label: 'Matplotlib' },
+            { id: 'seaborn', label: 'Seaborn' },
+            { id: 'opencv', label: 'OpenCV' },
+            { id: 'nltk', label: 'NLTK' },
+            { id: 'spacy', label: 'SpaCy' },
+            { id: 'huggingface', label: 'Hugging Face Transformers' },
+            { id: 'langchain', label: 'LangChain / LlamaIndex' },
+            { id: 'keras', label: 'Keras' }
+        ];
+
+        const javaEcoList = [
+            { id: 'springboot', label: 'Spring Boot' },
+            { id: 'hibernate', label: 'Hibernate ORM' },
+            { id: 'spark', label: 'Apache Spark' },
+            { id: 'maven', label: 'Maven / Gradle' },
+            { id: 'junit', label: 'JUnit' },
+            { id: 'jackson', label: 'Jackson JSON' },
+            { id: 'kafka', label: 'Apache Kafka' },
+            { id: 'log4j', label: 'Log4j' }
+        ];
+
+        const dbList = [
+            { id: 'postgres', label: 'PostgreSQL (SQL)' },
+            { id: 'mysql', label: 'MySQL (SQL)' },
+            { id: 'sqlite', label: 'SQLite (SQL)' },
+            { id: 'oracle', label: 'Oracle Database' },
+            { id: 'mongodb', label: 'MongoDB (NoSQL)' },
+            { id: 'redis', label: 'Redis (In-Memory)' },
+            { id: 'cassandra', label: 'Cassandra (Column)' },
+            { id: 'neo4j', label: 'Neo4j (Graph)' },
+            { id: 'dynamodb', label: 'DynamoDB' },
+            { id: 'firebase', label: 'Firebase Firestore' },
+            { id: 'elasticsearch', label: 'Elasticsearch' }
+        ];
+
+        // Selections Storage
+        let selections = {
+            lang: ['python', 'sql'],
+            web: ['html5', 'css3'],
+            py_ai: ['pandas', 'numpy'],
+            java_eco: [],
+            db: ['postgres']
+        };
+
+        // Complete Career Database Matrix
+        const careerDatabase = [
+            {
+                id: 'ai_genai_role',
+                category: 'AI',
+                title: 'Artificial Intelligence & Generative AI Engineer',
+                salary: '₹10 - 24 LPA',
+                description: 'Centers on Neural Networks, Transformers, Deep Learning, PyTorch, LangChain, and autonomous LLM agentic workflows.',
+                matchKeys: ['python', 'pytorch', 'huggingface', 'langchain', 'tensorflow', 'opencv', 'spacy', 'numpy', 'cpp'],
+                streamFit: 'B.Tech AI & Data Science (AI & DS)',
+                horizon: 'Extreme Growth / Core Frontier Domain',
+                milestone: 'Principal AI & LLM Systems Architect',
+                electives: [
+                    'Deep Learning & Transformer Architectures',
+                    'Computer Vision & Pattern Recognition',
+                    'Natural Language Processing (NLP)',
+                    'Reinforcement Learning & AI Ethics'
+                ],
+                skillsToLearn: ['PyTorch', 'LangChain', 'Vector DBs (Chroma/Pinecone)', 'Transformers', 'CUDA'],
+                capstones: [
+                    { title: 'Enterprise Multi-Agent RAG System', desc: 'Build an autonomous agent workflow using PyTorch & LangGraph for enterprise document synthesis.' }
+                ],
+                dos: ['Master matrix math & transformers.', 'Fine-tune open LLMs on custom data.'],
+                donts: ['Don\'t rely only on basic wrapper APIs.', 'Don\'t confuse AI with plain SQL querying.'],
+                roadmapNodes: ['Core Math & Python', 'PyTorch & Neural Nets', 'Transformers & LLMs', 'Agentic Capstone', 'AI Engineer Role']
+            },
+            {
+                id: 'ml_engineer_role',
+                category: 'ML',
+                title: 'Machine Learning & Predictive Systems Engineer',
+                salary: '₹8 - 20 LPA',
+                description: 'Focuses on core algorithmic ML, statistical modeling, feature engineering, and MLOps deployment pipelines.',
+                matchKeys: ['python', 'scikit', 'pandas', 'numpy', 'scipy', 'matplotlib', 'seaborn', 'spark', 'r', 'sql'],
+                streamFit: 'B.Tech AI & Machine Learning (AI & ML)',
+                horizon: 'High Expansion / Core Enterprise Need',
+                milestone: 'Lead MLOps & Algorithmic Architect',
+                electives: ['Applied Machine Learning', 'Probability & Stochastic Processes', 'Data Mining & Warehousing'],
+                skillsToLearn: ['Scikit-Learn', 'XGBoost', 'MLflow', 'Feature Stores', 'Pandas & NumPy'],
+                capstones: [
+                    { title: 'Automated Fraud Detection MLOps Engine', desc: 'Train predictive tree-based models and deploy retraining pipelines using MLflow & Docker.' }
+                ],
+                dos: ['Master cross-validation to avoid leakage.', 'Practice Kaggle competitions.'],
+                donts: ['Don\'t skip linear algebra assumptions.', 'Don\'t deploy models without drift monitoring.'],
+                roadmapNodes: ['Stats & Python Basics', 'Scikit-Learn Models', 'MLOps & Pipelines', 'Predictive Engine', 'ML Engineer Placement']
+            },
+            {
+                id: 'data_science_role',
+                category: 'DATA',
+                title: 'Data Scientist & Big Data Analytics Architect',
+                salary: '₹7 - 18 LPA',
+                description: 'Extracts business insights via statistics, SQL querying, PySpark data warehousing, and Pandas pipelines.',
+                matchKeys: ['python', 'sql', 'pandas', 'numpy', 'postgres', 'mysql', 'spark', 'r', 'matplotlib', 'seaborn'],
+                streamFit: 'B.Tech Data Analytics & Big Data',
+                horizon: 'Stable High Demand / Critical Business Core',
+                milestone: 'Chief Data Officer (CDO) Path',
+                electives: ['Business Analytics & Big Data', 'Applied Statistics', 'Database Management Systems (DBMS)'],
+                skillsToLearn: ['SQL (PostgreSQL/Snowflake)', 'Apache Spark', 'Pandas & Seaborn', 'Data Warehousing'],
+                capstones: [
+                    { title: 'Real-Time Streaming Analytics Engine', desc: 'Stream log metrics using Apache Spark & PostgreSQL into interactive dashboards.' }
+                ],
+                dos: ['Write complex SQL window functions.', 'Master A/B testing statistical logic.'],
+                donts: ['Don\'t confuse Data Science with Deep Learning.', 'Don\'t ignore data cleaning & ETL.'],
+                roadmapNodes: ['Advanced SQL & Math', 'Pandas & EDA', 'PySpark & Analytics', 'Big Data Capstone', 'Data Scientist Placement']
+            },
+            {
+                id: 'cybersec_role',
+                category: 'CYBER',
+                title: 'Cybersecurity Analyst & Penetration Tester',
+                salary: '₹7 - 18 LPA',
+                description: 'Specializes in network defense, offensive security, vulnerability assessment, binary exploitation, and reverse engineering.',
+                matchKeys: ['bash', 'python', 'cpp', 'asm', 'perl', 'rust', 'linux'],
+                streamFit: 'B.Tech Cyber Security (CS)',
+                horizon: 'Mission Critical / High Security Demand',
+                milestone: 'Chief Information Security Officer (CISO)',
+                electives: ['Cryptography & Network Security', 'Digital Forensics', 'Ethical Hacking & Pen Testing'],
+                skillsToLearn: ['Wireshark', 'Metasploit', 'GDB/Ghidra', 'Burp Suite', 'Linux Hardening'],
+                capstones: [
+                    { title: 'Automated Network Intrusion Analyzer', desc: 'Develop a packet analyzer in C++/Assembly for real-time anomaly detection.' }
+                ],
+                dos: ['Practice legally on TryHackMe/HackTheBox.', 'Target CompTIA Security+ or CEH.'],
+                donts: ['Never hack unauthorized targets.', 'Don\'t skip low-level memory layout.'],
+                roadmapNodes: ['Linux & Networking', 'Cryptography Core', 'Penetration Testing', 'Security Tooling', 'Cyber Specialist Role']
+            },
+            {
+                id: 'web_fullstack_role',
+                category: 'WEB',
+                title: 'Full-Stack & Distributed Systems Engineer',
+                salary: '₹7 - 17 LPA',
+                description: 'Builds high-concurrency web applications, distributed APIs, microservices, and fault-tolerant cloud backends.',
+                matchKeys: ['js', 'ts', 'react', 'nextjs', 'html5', 'css3', 'tailwind', 'node', 'postgres', 'redis', 'mongodb'],
+                streamFit: 'B.Tech Computer Science (Core CSE)',
+                horizon: 'Evergreen High Demand Across Tech',
+                milestone: 'Principal Software Architect',
+                electives: ['Web Technologies', 'Distributed Systems', 'Software Architecture', 'Cloud Infrastructure'],
+                skillsToLearn: ['React / Next.js', 'Node.js / Go', 'PostgreSQL & Redis', 'Docker & REST APIs'],
+                capstones: [
+                    { title: 'Scalable Microservices SaaS Platform', desc: 'Deploy Next.js frontend with PostgreSQL & Redis cache microservices.' }
+                ],
+                dos: ['Master LeetCode DSA for interviews.', 'Deploy all projects live.'],
+                donts: ['Don\'t copy simple tutorial clones.', 'Don\'t ignore database indexing.'],
+                roadmapNodes: ['HTML/CSS/JS & DSA', 'React & TypeScript', 'Backend APIs & SQL', 'Full-Stack Microservices', 'SDE I / Full-Stack Role']
+            },
+            {
+                id: 'java_enterprise_role',
+                category: 'WEB',
+                title: 'Java Enterprise Microservices Architect',
+                salary: '₹8 - 19 LPA',
+                description: 'Engineers enterprise-grade distributed microservices using Spring Boot, Kafka, and relational SQL engines.',
+                matchKeys: ['java', 'springboot', 'hibernate', 'maven', 'junit', 'kafka', 'postgres', 'mysql', 'oracle'],
+                streamFit: 'B.Tech Information Technology (IT)',
+                horizon: 'High Enterprise Stability',
+                milestone: 'Enterprise Solutions Architect',
+                electives: ['Enterprise Software Architecture', 'Object-Oriented Design Patterns', 'DBMS'],
+                skillsToLearn: ['Spring Boot', 'Hibernate ORM', 'Apache Kafka', 'PostgreSQL', 'JUnit'],
+                capstones: [
+                    { title: 'Event-Driven Banking Microservice Platform', desc: 'Build fault-tolerant banking backend with Spring Boot, Kafka queues, and PostgreSQL.' }
+                ],
+                dos: ['Master OOP design patterns & multithreading.', 'Write clean unit test suites with JUnit.'],
+                donts: ['Don\'t ignore memory management & JVM tuning.', 'Don\'t skip Spring Security basics.'],
+                roadmapNodes: ['Core Java & OOP', 'Spring Boot Core', 'Microservices & Kafka', 'Banking Capstone', 'Enterprise Java Role']
+            },
+            {
+                id: 'web3_role',
+                category: 'WEB3',
+                title: 'Blockchain & Smart Contract Architect',
+                salary: '₹10 - 25 LPA',
+                description: 'Engineers decentralized applications (dApps), smart contracts, and cryptographic protocols.',
+                matchKeys: ['solidity', 'rust', 'go', 'ts', 'cpp', 'haskell'],
+                streamFit: 'B.Tech Software Engineering (SE)',
+                horizon: 'High Innovation / Niche Frontier',
+                milestone: 'Head of Decentralized Protocols',
+                electives: ['Cryptography & Distributed Consensus', 'Peer-to-Peer Networks', 'FinTech Protocols'],
+                skillsToLearn: ['Solidity', 'Hardhat / Foundry', 'Ethers.js', 'Smart Contract Auditing'],
+                capstones: [
+                    { title: 'Decentralized Automated Market Maker (AMM)', desc: 'Deploy audited Solidity smart contracts for liquidity pools with custom ERC-20 tokens.' }
+                ],
+                dos: ['Audit smart contract memory to avoid re-entrancy bugs.', 'Master EVM gas optimization.'],
+                donts: ['Don\'t deploy code on mainnet without automated unit testing.'],
+                roadmapNodes: ['Cryptography & P2P', 'Solidity Basics', 'DeFi Protocols', 'Smart Contract Audit', 'Web3 Architect Role']
+            }
+        ];
+
+        let currentAnalysisResult = null;
+
+        window.onload = function() {
+            initCanvas();
+            renderCategoryChips();
+            renderModalDb();
+            checkRatingLockout();
+        };
+
+        function renderCategoryChips() {
+            renderChips('langs-container', langList, 'lang');
+            renderChips('web-container', webList, 'web');
+            renderChips('py-ai-container', pyAiList, 'py_ai');
+            renderChips('java-container', javaEcoList, 'java_eco');
+            renderChips('db-container', dbList, 'db');
+            updateCounts();
+        }
+
+        function renderChips(containerId, items, categoryKey) {
+            document.getElementById(containerId).innerHTML = items.map(item => {
+                const isChecked = selections[categoryKey].includes(item.id) ? 'checked' : '';
+                const iconHtml = item.icon ? `<i class="${item.icon}"></i>` : `<i class="fa-solid fa-cube text-slate-500"></i>`;
+                return `
+                    <div class="relative">
+                        <input type="checkbox" id="${categoryKey}-${item.id}" value="${item.id}" ${isChecked} onchange="toggleSkill('${categoryKey}', '${item.id}')" class="chip-checkbox sr-only">
+                        <label for="${categoryKey}-${item.id}" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 cursor-pointer hover:border-slate-700 transition">
+                            ${iconHtml} ${item.label}
+                        </label>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleSkill(categoryKey, id) {
+            if (selections[categoryKey].includes(id)) {
+                selections[categoryKey] = selections[categoryKey].filter(i => i !== id);
+            } else {
+                selections[categoryKey].push(id);
+            }
+            updateCounts();
+        }
+
+        function clearCategory(categoryKey) {
+            selections[categoryKey] = [];
+            renderCategoryChips();
+        }
+
+        function updateCounts() {
+            document.getElementById('count-langs').innerText = selections.lang.length;
+            document.getElementById('count-web').innerText = selections.web.length;
+            document.getElementById('count-py-ai').innerText = selections.py_ai.length;
+            document.getElementById('count-java').innerText = selections.java_eco.length;
+            document.getElementById('count-db').innerText = selections.db.length;
+        }
+
+        function analyzeCareer() {
+            const allSelected = [
+                ...selections.lang,
+                ...selections.web,
+                ...selections.py_ai,
+                ...selections.java_eco,
+                ...selections.db
+            ];
+
+            if (allSelected.length === 0) {
+                alert('Please select at least one technology or language to run the analysis engine.');
+                return;
+            }
+
+            const stream = document.getElementById('stream-select').value;
+            const year = parseInt(document.getElementById('year-select').value);
+
+            const scoredPaths = careerDatabase.map(career => {
+                let score = 0;
+                career.matchKeys.forEach(key => {
+                    if (allSelected.includes(key)) score += 4;
+                });
+                
+                let matchPercentage = Math.min(Math.round((score / 16) * 100), 98);
+                if (matchPercentage < 35 && score > 0) matchPercentage += 30;
+                return { ...career, matchPercentage };
+            }).sort((a, b) => b.matchPercentage - a.matchPercentage);
+
+            const primary = scoredPaths[0];
+            const secondary = scoredPaths[1] || scoredPaths[0];
+
+            currentAnalysisResult = { primary, secondary, stream, year, allSelected };
+
+            // Update Primary Section UI
+            document.getElementById('results-section').classList.remove('hidden');
+            document.getElementById('res-target-role').innerText = primary.title;
+            document.getElementById('res-target-desc').innerText = primary.description;
+            document.getElementById('res-match-score').innerText = `${primary.matchPercentage}%`;
+            document.getElementById('res-avg-salary').innerText = primary.salary;
+
+            // Render Trajectory Panel
+            document.getElementById('traj-stream-fit').innerText = primary.streamFit;
+            document.getElementById('traj-horizon').innerText = primary.horizon;
+            document.getElementById('traj-milestone').innerText = primary.milestone;
+
+            // Render Electives, Skills, Projects, Dos/Donts
+            document.getElementById('res-electives-list').innerHTML = primary.electives.map(e => `
+                <li class="flex items-start gap-2.5 text-slate-200">
+                    <i class="fa-solid fa-graduation-cap text-cyan-400 mt-1"></i>
+                    <span>${e}</span>
+                </li>
+            `).join('');
+
+            document.getElementById('res-skills-to-learn').innerHTML = primary.skillsToLearn.map(s => `
+                <span class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-700 text-cyan-300 text-xs font-mono">${s}</span>
+            `).join('');
+
+            document.getElementById('res-projects-list').innerHTML = primary.capstones.map(c => `
+                <div class="bg-slate-900/90 border border-slate-800 p-4 rounded-xl space-y-1">
+                    <h4 class="font-display font-bold text-white text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-code-branch text-emerald-400"></i> ${c.title}
+                    </h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">${c.desc}</p>
+                </div>
+            `).join('');
+
+            document.getElementById('res-dos-list').innerHTML = primary.dos.map(d => `
+                <li class="flex items-start gap-2.5"><i class="fa-solid fa-check text-emerald-400 mt-1"></i><span>${d}</span></li>
+            `).join('');
+
+            document.getElementById('res-donts-list').innerHTML = primary.donts.map(d => `
+                <li class="flex items-start gap-2.5"><i class="fa-solid fa-xmark text-rose-400 mt-1"></i><span>${d}</span></li>
+            `).join('');
+
+            // Guarantee Canvas Visual Roadmap Render
+            setTimeout(() => {
+                renderVisualRoadmap(primary.roadmapNodes, primary.title);
+            }, 50);
+
+            document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Render Visual Roadmap Canvas with Watermark
+        function renderVisualRoadmap(nodes, roleTitle) {
+            const canvas = document.getElementById('roadmap-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Background
+            ctx.fillStyle = '#0a0f1e';
+            ctx.fillRect(0, 0, width, height);
+
+            // Grid lines background
+            ctx.strokeStyle = 'rgba(0, 243, 255, 0.05)';
+            ctx.lineWidth = 1;
+            for (let x = 0; x < width; x += 30) {
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+            }
+            for (let y = 0; y < height; y += 30) {
+                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+            }
+
+            // Watermark (Center Semi-Transparent) - Website Name Only
+            ctx.save();
+            ctx.translate(width / 2, height / 2);
+            ctx.rotate(-Math.PI / 12);
+            ctx.font = '900 36px Montserrat, sans-serif';
+            ctx.fillStyle = 'rgba(0, 243, 255, 0.08)';
+            ctx.textAlign = 'center';
+            ctx.fillText('CHOOSE YOUR OWN', 0, 0);
+            ctx.restore();
+
+            // Connecting line
+            const startX = 100;
+            const spacing = (width - 200) / (nodes.length - 1);
+            const centerY = 170;
+
+            ctx.beginPath();
+            ctx.moveTo(startX, centerY);
+            ctx.lineTo(startX + spacing * (nodes.length - 1), centerY);
+            ctx.strokeStyle = '#00f3ff';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Nodes
+            nodes.forEach((nodeText, idx) => {
+                const nx = startX + idx * spacing;
+                const ny = centerY;
+
+                // Glowing Outer Circle
+                ctx.beginPath();
+                ctx.arc(nx, ny, 24, 0, Math.PI * 2);
+                ctx.fillStyle = '#05070d';
+                ctx.fill();
+                ctx.strokeStyle = idx === nodes.length - 1 ? '#00ff9d' : '#00f3ff';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+
+                // Stage Number
+                ctx.fillStyle = idx === nodes.length - 1 ? '#00ff9d' : '#ffffff';
+                ctx.font = 'bold 14px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(idx + 1, nx, ny);
+
+                // Stage Title Above/Below
+                const isEven = idx % 2 === 0;
+                const textY = isEven ? ny - 45 : ny + 45;
+
+                ctx.font = '600 12px Inter, sans-serif';
+                ctx.fillStyle = idx === nodes.length - 1 ? '#00ff9d' : '#e2e8f0';
+
+                // Multi-line wrap
+                const words = nodeText.split(' ');
+                if (words.length > 2) {
+                    const line1 = words.slice(0, 2).join(' ');
+                    const line2 = words.slice(2).join(' ');
+                    ctx.fillText(line1, nx, textY - 7);
+                    ctx.fillText(line2, nx, textY + 7);
+                } else {
+                    ctx.fillText(nodeText, nx, textY);
+                }
+            });
+
+            // Footer Stamp
+            ctx.font = '10px monospace';
+            ctx.fillStyle = 'rgba(226, 232, 240, 0.4)';
+            ctx.textAlign = 'right';
+            ctx.fillText('Official Visual Roadmap Generated by Choose Your Own Engine', width - 20, height - 15);
+        }
+
+        // Export Visual Canvas Roadmap as PNG Image
+        function downloadRoadmapCanvas() {
+            const canvas = document.getElementById('roadmap-canvas');
+            if (!canvas) return;
+            const imageURI = canvas.toDataURL("image/png");
+            const link = document.createElement('a');
+            link.download = `ChooseYourOwn_Roadmap_${Date.now()}.png`;
+            link.href = imageURI;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        }
+
+        // Interactive Rating System Logic with 24-Hour Lockout
+        let currentSelectedRating = 0;
+        const ratingLabels = {
+            1: "1 Star - Needs Improvement",
+            2: "2 Stars - Below Expectations",
+            3: "3 Stars - Good & Helpful",
+            4: "4 Stars - Very Accurate & Well Structured",
+            5: "5 Stars - Excellent Career Pathfinder!"
+        };
+
+        function checkRatingLockout() {
+            const lastTimestamp = localStorage.getItem('cyo_rating_timestamp');
+            if (lastTimestamp) {
+                const now = Date.now();
+                const hoursPassed = (now - parseInt(lastTimestamp)) / (1000 * 60 * 60);
+                if (hoursPassed < 24) {
+                    document.getElementById('rating-form').classList.add('hidden');
+                    document.getElementById('rating-lockout-message').classList.remove('hidden');
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function setRating(val) {
+            currentSelectedRating = val;
+            updateStarColors(val);
+            document.getElementById('rating-label-text').innerText = ratingLabels[val];
+        }
+
+        function hoverRating(val) {
+            updateStarColors(val);
+            document.getElementById('rating-label-text').innerText = ratingLabels[val];
+        }
+
+        function resetHoverRating() {
+            updateStarColors(currentSelectedRating);
+            document.getElementById('rating-label-text').innerText = currentSelectedRating > 0 ? ratingLabels[currentSelectedRating] : "Tap a star to rate";
+        }
+
+        function updateStarColors(ratingVal) {
+            const stars = document.querySelectorAll('#star-rating-container i');
+            stars.forEach((star, index) => {
+                if (index < ratingVal) {
+                    star.classList.remove('text-slate-600');
+                    star.classList.add('text-goldAccent');
+                } else {
+                    star.classList.remove('text-goldAccent');
+                    star.classList.add('text-slate-600');
+                }
+            });
+        }
+
+        // CONNECTED TO WEB3FORMS DATABASE ENDPOINT (Key: 04e96e40-15eb-40f8-a375-82a6684b2668)
+        async function handleRatingSubmit(event) {
+            event.preventDefault();
+            if (checkRatingLockout()) return;
+
+            if (currentSelectedRating === 0) {
+                alert('Please select a star rating from 1 to 5 before submitting.');
+                return;
+            }
+
+            const name = document.getElementById('fb-name').value;
+            const college = document.getElementById('fb-college').value;
+            const comment = document.getElementById('fb-comment').value;
+            const submitBtn = document.getElementById('rating-btn');
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Transmitting...`;
+
+            const ratingPayload = {
+                access_key: FEEDBACK_FORM_ACCESS_KEY,
+                subject: `[Choose Your Own] New ${currentSelectedRating}-Star Feedback from ${name}`,
+                from_name: "Choose Your Own Engine",
+                name: name,
+                college: college,
+                rating: `${currentSelectedRating} Stars`,
+                message: comment,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                const response = await fetch(WEB3FORMS_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(ratingPayload)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    localStorage.setItem('cyo_rating_timestamp', Date.now().toString());
+                    document.getElementById('conf-fb-name').innerText = name;
+                    document.getElementById('conf-fb-rating').innerText = `${currentSelectedRating}-Star`;
+                    document.getElementById('rating-form').classList.add('hidden');
+                    document.getElementById('rating-success-message').classList.remove('hidden');
+                } else {
+                    alert(`Database submission failed: ${result.message || 'Please try again.'}`);
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Submit Rating & Feedback`;
+                }
+            } catch (err) {
+                console.error("Web3Forms connection error:", err);
+                alert('Network error while connecting to Web3Forms feedback database.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Submit Rating & Feedback`;
+            }
+        }
+
+        // CONNECTED TO WEB3FORMS DATABASE ENDPOINT (Key: 25716a97-1863-445a-a7d1-3c2ad20523ca)
+        async function handleProblemSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('prob-name').value;
+            const email = document.getElementById('prob-email').value;
+            const category = document.getElementById('prob-category').value;
+            const stream = document.getElementById('prob-stream').value;
+            const desc = document.getElementById('prob-desc').value;
+            const submitBtn = document.getElementById('prob-btn');
+            const ticketId = 'CYO-' + Math.floor(100000 + Math.random() * 900000);
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Logging Ticket...`;
+
+            const problemPayload = {
+                access_key: PROBLEM_FORM_ACCESS_KEY,
+                subject: `[Choose Your Own] Problem Ticket ${ticketId} from ${name}`,
+                from_name: "Choose Your Own Engine",
+                ticket_id: ticketId,
+                name: name,
+                email: email,
+                category: category,
+                stream_and_year: stream,
+                message: desc,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                const response = await fetch(WEB3FORMS_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(problemPayload)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    document.getElementById('conf-ticket-id').innerText = ticketId;
+                    document.getElementById('conf-prob-name').innerText = name;
+                    document.getElementById('conf-prob-email').innerText = email;
+                    document.getElementById('problem-form').classList.add('hidden');
+                    document.getElementById('prob-success-message').classList.remove('hidden');
+                } else {
+                    alert(`Ticket submission failed: ${result.message || 'Please retry.'}`);
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Submit Problem Ticket`;
+                }
+            } catch (err) {
+                console.error("Web3Forms connection error:", err);
+                alert('Network error while connecting to Web3Forms problem-solving database.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Submit Problem Ticket`;
+            }
+        }
+
+        function exportCareerPlan(format) {
+            if (!currentAnalysisResult) return;
+            const p = currentAnalysisResult.primary;
+            if (format === 'json') {
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentAnalysisResult, null, 2));
+                downloadFile(dataStr, `ChooseYourOwn_${p.id}.json`);
+            } else {
+                let txt = `CHOOSE YOUR OWN ROADMAP REPORT - Founded by Aneek Mallick\nTarget Role: ${p.title}\nMatch Score: ${p.matchPercentage}%\nSalary Tier: ${p.salary}\nDescription: ${p.description}\nStream Fit: ${p.streamFit}\n5-10 Year Horizon: ${p.horizon}\n`;
+                const dataStr = "data:text/plain;charset=utf-8," + encodeURIComponent(txt);
+                downloadFile(dataStr, `ChooseYourOwn_${p.id}.txt`);
+            }
+        }
+
+        function downloadFile(content, fileName) {
+            const a = document.createElement('a');
+            a.setAttribute("href", content);
+            a.setAttribute("download", fileName);
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        }
+
+        function openDbModal() { document.getElementById('db-modal').classList.remove('hidden'); }
+        function closeDbModal() { document.getElementById('db-modal').classList.add('hidden'); }
+
+        function renderModalDb() {
+            const search = document.getElementById('modal-search').value.toLowerCase();
+            const filter = document.getElementById('modal-filter-domain').value;
+            const container = document.getElementById('modal-db-container');
+
+            const filtered = careerDatabase.filter(item => {
+                const matchCat = (filter === 'ALL' || item.category === filter);
+                const matchSearch = item.title.toLowerCase().includes(search) || item.description.toLowerCase().includes(search);
+                return matchCat && matchSearch;
+            });
+
+            document.getElementById('modal-item-count').innerText = `${filtered.length} Verticals Available`;
+
+            container.innerHTML = filtered.map(item => `
+                <div class="glass-panel p-5 rounded-2xl border border-slate-800 space-y-3">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 text-[10px] font-mono">${item.category} VERTICAL</span>
+                            <h4 class="font-display font-bold text-white text-base mt-1">${item.title}</h4>
+                            <p class="text-xs text-slate-400">${item.description}</p>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-emerald-400">${item.salary}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function initCanvas() {
+            const canvas = document.getElementById('bg-canvas');
+            const ctx = canvas.getContext('2d');
+            let w = canvas.width = window.innerWidth;
+            let h = canvas.height = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            });
+
+            const particles = Array.from({ length: Math.floor(w / 25) }, () => ({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5
+            }));
+
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+                particles.forEach((p, i) => {
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0 || p.x > w) p.vx *= -1;
+                    if (p.y < 0 || p.y > h) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2);
+                    ctx.fillStyle = '#00f3ff';
+                    ctx.fill();
+
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = p.x - particles[j].x, dy = p.y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(0, 243, 255, ${0.1 * (1 - dist / 100)})`;
+                            ctx.stroke();
+                        }
+                    }
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+    </script>
+</body>
+</html>
